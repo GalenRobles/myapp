@@ -38,9 +38,9 @@
             this.txtNombre.AutoSize = true;
             this.txtNombre.Location = new System.Drawing.Point(224, 44);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(79, 20);
+            this.txtNombre.Size = new System.Drawing.Size(64, 20);
             this.txtNombre.TabIndex = 0;
-            this.txtNombre.Text = "NOMBRE";
+            this.txtNombre.Text = "NANCY";
             this.txtNombre.Click += new System.EventHandler(this.label1_Click);
             // 
             // txtbox
