@@ -43,6 +43,7 @@ namespace myapp
            txtNumero1.Clear();
             txtNumero2.Clear();
             txtNumero3.Clear();
+            
         }
     }
 }
