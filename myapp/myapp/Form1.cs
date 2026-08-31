@@ -12,6 +12,7 @@ namespace myapp
 {
     public partial class Form1 : Form
     {
+        bool save = false;
         public Form1()
         {
             InitializeComponent();
@@ -21,5 +22,31 @@ namespace myapp
         {
 
         }
+
+        private void menuPrincipal_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ofpAbrir.ShowDialog() == DialogResult.OK)
+            {
+                rctTexto.LoadFile(ofpAbrir.FileName, RichTextBoxStreamType.PlainText);
+            }
+        }
+
+        private void guardarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (save == false)
+            {
+                if(sfdGuardar.ShowDialog() == DialogResult.OK)
+                {
+                    save = true;
+
+                }
+            }
+        }
     }
 }
+
