@@ -1,0 +1,10 @@
+C:\App\MyApp1\myapp\myapp\bin\Debug\myapp.exe.config
+C:\App\MyApp1\myapp\myapp\bin\Debug\myapp.exe
+C:\App\MyApp1\myapp\myapp\bin\Debug\myapp.pdb
+C:\App\MyApp1\myapp\myapp\obj\Debug\myapp.csproj.AssemblyReference.cache
+C:\App\MyApp1\myapp\myapp\obj\Debug\myapp.Form1.resources
+C:\App\MyApp1\myapp\myapp\obj\Debug\myapp.Properties.Resources.resources
+C:\App\MyApp1\myapp\myapp\obj\Debug\myapp.csproj.GenerateResource.cache
+C:\App\MyApp1\myapp\myapp\obj\Debug\myapp.csproj.CoreCompileInputs.cache
+C:\App\MyApp1\myapp\myapp\obj\Debug\myapp.exe
+C:\App\MyApp1\myapp\myapp\obj\Debug\myapp.pdb

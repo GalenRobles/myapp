@@ -21,5 +21,12 @@ namespace myapp
         {
 
         }
+
+        private void tmrReloj_Tick(object sender, EventArgs e)
+        {
+            DateTime tiempo=DateTime.Now;
+            lblRelog.Text = tiempo.ToString("HH:mm:ss");
+            lblfecha.Text = tiempo.ToString("MM-dd-yyyy");
+        }
     }
 }
