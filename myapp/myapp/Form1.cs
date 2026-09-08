@@ -13,6 +13,8 @@ namespace myapp
     public partial class Form1 : Form
     {
         bool save = false;
+        int contador = 0;
+        bool escribio = false;
         string path;
         
         public Form1()
@@ -48,15 +50,28 @@ namespace myapp
                 if(sfdGuardar.ShowDialog() == DialogResult.OK)
                 {
                     path = sfdGuardar.FileName;
-                    save = true;
-
+                    save = true;   
                 }
             }
-            rctTexto.SaveFile(path,RichTextBoxStreamType.PlainText);
+            if (save == true)
+            {
+                contador = 0;
+                escribio= false;
+                tiempoGuardar.Enabled = false;
+                rctTexto.SaveFile(path, RichTextBoxStreamType.PlainText);
+            }
+
         }
 
         private void rctTexto_TextChanged(object sender, EventArgs e)
         {
+            if (escribio == false)
+            {
+                contador = 0;
+            }
+            escribio = true;
+            guardarToolStripMenuItem.Enabled = true;
+            tiempoGuardar.Enabled = true;
 
         }
 
@@ -67,7 +82,10 @@ namespace myapp
                 path = sfdGuardar.FileName;
                 rctTexto.SaveFile(path, RichTextBoxStreamType.PlainText);
                 guardarToolStripMenuItem.Enabled = true;
-                save= true;
+                contador = 0;
+                escribio = false;
+                tiempoGuardar.Enabled = false;
+                save = true;
             }
         }
 
@@ -77,12 +95,40 @@ namespace myapp
             rctTexto.Focus();
             path = "";
             save= false;
+            escribio = false;
+            contador=0;
+            tiempoGuardar.Enabled= false;
+            
             //guardarToolStripMenuItem.Enabled=true;
+        }
+
+        private void tiempoGuardar_Tick(object sender, EventArgs e)
+        {
+            DateTime tiempo = DateTime.Now;
+            if (save == true)
+            {
+                if (escribio == true)
+                {
+                    contador++;
+                    if (contador == 30)
+                    {
+                        contador = 0;
+                        rctTexto.SaveFile(path, RichTextBoxStreamType.PlainText);
+                        escribio= false;
+                        tiempoGuardar.Enabled=false;
+                        MessageBox.Show("Se guardo en automatico tu nota");
+
+                    }
+                }
+                
+
+            }
         }
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+            
         }
     }
 }

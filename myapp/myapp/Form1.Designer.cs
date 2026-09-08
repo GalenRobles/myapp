@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuPrincipal = new System.Windows.Forms.ToolStripMenuItem();
             this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -38,6 +39,7 @@
             this.rctTexto = new System.Windows.Forms.RichTextBox();
             this.ofpAbrir = new System.Windows.Forms.OpenFileDialog();
             this.sfdGuardar = new System.Windows.Forms.SaveFileDialog();
+            this.tiempoGuardar = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -121,6 +123,11 @@
             // 
             this.sfdGuardar.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
             // 
+            // tiempoGuardar
+            // 
+            this.tiempoGuardar.Interval = 1000;
+            this.tiempoGuardar.Tick += new System.EventHandler(this.tiempoGuardar_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -151,6 +158,7 @@
         private System.Windows.Forms.RichTextBox rctTexto;
         private System.Windows.Forms.OpenFileDialog ofpAbrir;
         private System.Windows.Forms.SaveFileDialog sfdGuardar;
+        private System.Windows.Forms.Timer tiempoGuardar;
     }
 }
 
