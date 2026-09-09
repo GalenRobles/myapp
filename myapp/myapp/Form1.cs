@@ -29,6 +29,7 @@ namespace myapp
             if (DateTime.Now.ToLongTimeString() == tiempo.ToLongTimeString())
             {
                 Console.Beep(1000, 200);
+                MessageBox.Show("Alarma sonando");
             }
 
         }
