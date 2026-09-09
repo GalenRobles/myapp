@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WMPLib;
 
 namespace myapp
 {
@@ -28,7 +29,10 @@ namespace myapp
             lblReloj.Text = DateTime.Now.ToLongTimeString();
             if (DateTime.Now.ToLongTimeString() == tiempo.ToLongTimeString())
             {
-                Console.Beep(1000, 200);
+                //Console.Beep(1000, 200);
+                axWindowsMediaPlayer1.URL = @"C:\Users\loren\Downloads\gallo.mp3";
+                axWindowsMediaPlayer1.Ctlcontrols.play();
+
                 MessageBox.Show("Alarma sonando");
             }
 

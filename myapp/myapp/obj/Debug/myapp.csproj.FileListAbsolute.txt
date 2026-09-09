@@ -9,3 +9,9 @@ C:\App\MyApp1\myapp\myapp\obj\Debug\myapp.csproj.CoreCompileInputs.cache
 C:\App\MyApp1\myapp\myapp\obj\Debug\myapp.exe
 C:\App\MyApp1\myapp\myapp\obj\Debug\myapp.pdb
 C:\App\MyApp1\myapp\myapp\obj\Debug\myapp.FmrConfigurar.resources
+C:\App\MyApp1\myapp\myapp\bin\Debug\Interop.WMPLib.dll
+C:\App\MyApp1\myapp\myapp\bin\Debug\AxInterop.WMPLib.dll
+C:\App\MyApp1\myapp\myapp\obj\Debug\Interop.MediaPlayer.dll
+C:\App\MyApp1\myapp\myapp\obj\Debug\Interop.WMPLib.dll
+C:\App\MyApp1\myapp\myapp\obj\Debug\AxInterop.WMPLib.dll
+C:\App\MyApp1\myapp\myapp\obj\Debug\myapp.csproj.ResolveComReference.cache
