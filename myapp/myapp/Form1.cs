@@ -110,7 +110,7 @@ namespace myapp
                 if (escribio == true)
                 {
                     contador++;
-                    if (contador == 30)
+                    if (contador == 10)
                     {
                         contador = 0;
                         rctTexto.SaveFile(path, RichTextBoxStreamType.PlainText);
