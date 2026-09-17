@@ -29,16 +29,15 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnAgregar = new System.Windows.Forms.Button();
+            this.txtTel = new System.Windows.Forms.MaskedTextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtNom = new System.Windows.Forms.TextBox();
             this.dtgInformacion = new System.Windows.Forms.DataGridView();
             this.Numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtNombre = new System.Windows.Forms.TextBox();
-            this.txtNom = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtTel = new System.Windows.Forms.MaskedTextBox();
-            this.btnAgregar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -64,7 +63,6 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.Control;
-            this.splitContainer1.Panel2.Controls.Add(this.txtNombre);
             this.splitContainer1.Panel2.Controls.Add(this.dtgInformacion);
             this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
@@ -72,8 +70,53 @@
             this.splitContainer1.SplitterDistance = 280;
             this.splitContainer1.TabIndex = 0;
             // 
+            // btnAgregar
+            // 
+            this.btnAgregar.Location = new System.Drawing.Point(654, 117);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(142, 41);
+            this.btnAgregar.TabIndex = 4;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            // 
+            // txtTel
+            // 
+            this.txtTel.Location = new System.Drawing.Point(317, 76);
+            this.txtTel.Mask = "(999)000-0000";
+            this.txtTel.Name = "txtTel";
+            this.txtTel.Size = new System.Drawing.Size(180, 26);
+            this.txtTel.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(313, 43);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(71, 20);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Telefono";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(78, 43);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 20);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Nombre";
+            // 
+            // txtNom
+            // 
+            this.txtNom.Location = new System.Drawing.Point(82, 77);
+            this.txtNom.Name = "txtNom";
+            this.txtNom.Size = new System.Drawing.Size(192, 26);
+            this.txtNom.TabIndex = 0;
+            // 
             // dtgInformacion
             // 
+            this.dtgInformacion.AllowUserToAddRows = false;
+            this.dtgInformacion.AllowUserToDeleteRows = false;
             this.dtgInformacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgInformacion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Numero,
@@ -82,6 +125,7 @@
             this.dtgInformacion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgInformacion.Location = new System.Drawing.Point(0, 0);
             this.dtgInformacion.Name = "dtgInformacion";
+            this.dtgInformacion.ReadOnly = true;
             this.dtgInformacion.RowHeadersWidth = 62;
             this.dtgInformacion.RowTemplate.Height = 28;
             this.dtgInformacion.Size = new System.Drawing.Size(841, 257);
@@ -108,55 +152,6 @@
             this.Telefono.Name = "Telefono";
             this.Telefono.Width = 150;
             // 
-            // txtNombre
-            // 
-            this.txtNombre.Location = new System.Drawing.Point(99, 30);
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(149, 26);
-            this.txtNombre.TabIndex = 1;
-            // 
-            // txtNom
-            // 
-            this.txtNom.Location = new System.Drawing.Point(82, 77);
-            this.txtNom.Name = "txtNom";
-            this.txtNom.Size = new System.Drawing.Size(192, 26);
-            this.txtNom.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(78, 43);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 20);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Nombre";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(313, 43);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 20);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Telefono";
-            // 
-            // txtTel
-            // 
-            this.txtTel.Location = new System.Drawing.Point(317, 76);
-            this.txtTel.Mask = "(999)000-0000";
-            this.txtTel.Name = "txtTel";
-            this.txtTel.Size = new System.Drawing.Size(180, 26);
-            this.txtTel.TabIndex = 3;
-            // 
-            // btnAgregar
-            // 
-            this.btnAgregar.Location = new System.Drawing.Point(654, 117);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(142, 41);
-            this.btnAgregar.TabIndex = 4;
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -169,7 +164,6 @@
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgInformacion)).EndInit();
@@ -184,7 +178,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Numero;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Telefono;
-        private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtNom;
         private System.Windows.Forms.MaskedTextBox txtTel;
