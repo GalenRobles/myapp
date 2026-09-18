@@ -112,17 +112,20 @@ namespace myapp
                     contador++;
                     if (contador == 10)
                     {
-                        contador = 0;
                         rctTexto.SaveFile(path, RichTextBoxStreamType.PlainText);
-                        escribio= false;
-                        tiempoGuardar.Enabled=false;
-                        MessageBox.Show("Se guardo en automatico tu nota");
-
+                        statuslabel.Text = "Archivo guardado";
                     }
-                }
-   
-
-            }
+                    if (contador == 12)
+                    {
+                        escribio = false;
+                        tiempoGuardar.Enabled = false;
+                        contador = 0;
+                        statuslabel.Text = "";
+                    }
+                        
+                    }
+             }
+            
         }
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
