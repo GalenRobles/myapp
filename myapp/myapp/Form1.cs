@@ -39,5 +39,19 @@ namespace myapp
                 }
             }
         }
+
+        private void dtg_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Form2 editar = new Form2(
+                dtg.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                dtg.Rows[e.RowIndex].Cells[2].Value.ToString());
+            if (editar.ShowDialog() == DialogResult.OK)
+            {
+                string nombre = editar.ActualizaNombre;
+                string correo = editar.ActualizaCorreo;
+                dtg.Rows[e.RowIndex].Cells[1].Value = nombre;
+                dtg.Rows[e.RowIndex].Cells[2].Value= correo;
+            }
+        }
     }
 }

@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.dtg = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnCargar = new System.Windows.Forms.Button();
+            this.dtg = new System.Windows.Forms.DataGridView();
             this.ofd = new System.Windows.Forms.OpenFileDialog();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -60,48 +63,6 @@
             this.splitContainer1.SplitterDistance = 191;
             this.splitContainer1.TabIndex = 0;
             // 
-            // dtg
-            // 
-            this.dtg.AllowUserToAddRows = false;
-            this.dtg.AllowUserToDeleteRows = false;
-            this.dtg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtg.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3});
-            this.dtg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dtg.Location = new System.Drawing.Point(0, 0);
-            this.dtg.Name = "dtg";
-            this.dtg.ReadOnly = true;
-            this.dtg.RowHeadersWidth = 62;
-            this.dtg.RowTemplate.Height = 28;
-            this.dtg.Size = new System.Drawing.Size(1018, 255);
-            this.dtg.TabIndex = 0;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Id";
-            this.Column1.MinimumWidth = 8;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 25;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Nombre";
-            this.Column2.MinimumWidth = 8;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 150;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Correo";
-            this.Column3.MinimumWidth = 8;
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 200;
-            // 
             // btnCargar
             // 
             this.btnCargar.Location = new System.Drawing.Point(33, 29);
@@ -112,9 +73,75 @@
             this.btnCargar.UseVisualStyleBackColor = true;
             this.btnCargar.Click += new System.EventHandler(this.btnCargar_Click);
             // 
+            // dtg
+            // 
+            this.dtg.AllowUserToAddRows = false;
+            this.dtg.AllowUserToDeleteRows = false;
+            this.dtg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtg.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column3,
+            this.Column2,
+            this.Column4,
+            this.Column5});
+            this.dtg.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtg.Location = new System.Drawing.Point(0, 0);
+            this.dtg.Name = "dtg";
+            this.dtg.ReadOnly = true;
+            this.dtg.RowHeadersWidth = 62;
+            this.dtg.RowTemplate.Height = 28;
+            this.dtg.Size = new System.Drawing.Size(1018, 255);
+            this.dtg.TabIndex = 0;
+            this.dtg.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtg_CellContentClick);
+            // 
             // ofd
             // 
             this.ofd.FileName = "openFileDialog1";
+            // 
+            // Column1
+            // 
+            this.Column1.FillWeight = 10F;
+            this.Column1.HeaderText = "Id";
+            this.Column1.MinimumWidth = 50;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 50;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Correo";
+            this.Column3.MinimumWidth = 8;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 200;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Nombre";
+            this.Column2.MinimumWidth = 8;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 150;
+            // 
+            // Column4
+            // 
+            this.Column4.FillWeight = 50F;
+            this.Column4.HeaderText = "";
+            this.Column4.Image = ((System.Drawing.Image)(resources.GetObject("Column4.Image")));
+            this.Column4.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.FillWeight = 50F;
+            this.Column5.HeaderText = "";
+            this.Column5.Image = ((System.Drawing.Image)(resources.GetObject("Column5.Image")));
+            this.Column5.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Column5.MinimumWidth = 8;
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Width = 150;
             // 
             // Form1
             // 
@@ -138,11 +165,13 @@
 
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.DataGridView dtg;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.Button btnCargar;
         private System.Windows.Forms.OpenFileDialog ofd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewImageColumn Column4;
+        private System.Windows.Forms.DataGridViewImageColumn Column5;
     }
 }
 

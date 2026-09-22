@@ -25,3 +25,4 @@ C:\App\MyApp1\myapp\myapp\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\App\MyApp1\myapp\myapp\obj\Debug\myapp.csproj.Up2Date
 C:\App\MyApp1\myapp\myapp\obj\Debug\myapp.exe
 C:\App\MyApp1\myapp\myapp\obj\Debug\myapp.pdb
+C:\App\MyApp1\myapp\myapp\obj\Debug\myapp.Form2.resources
