@@ -16,6 +16,7 @@ namespace myapp
     public partial class Form1 : Form
     {
         List<Persona> registros = new List<Persona>();
+        String ruta = "";
         public Form1()
         {
             InitializeComponent();
@@ -30,6 +31,7 @@ namespace myapp
         {
             if (ofd.ShowDialog() == DialogResult.OK)
             {
+                ruta= ofd.FileName;
                 var reader = new StreamReader(ofd.FileName);
                 var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
                 registros = csv.GetRecords<Persona>().ToList();
@@ -37,6 +39,7 @@ namespace myapp
                 {
                     dtg.Rows.Add(registro.id, registro.name, registro.email);
                 }
+                reader.Close();
             }
         }
 
@@ -51,6 +54,17 @@ namespace myapp
                 string correo = editar.ActualizaCorreo;
                 dtg.Rows[e.RowIndex].Cells[1].Value = nombre;
                 dtg.Rows[e.RowIndex].Cells[2].Value= correo;
+
+                registros[e.RowIndex].name = nombre;
+                registros[e.RowIndex].email= correo;
+
+                var writer = new StreamWriter(ruta);
+
+                var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
+
+                csv.WriteRecords( registros );
+                csv.Dispose();
+                writer.Close();
             }
         }
     }
