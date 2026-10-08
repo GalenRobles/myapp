@@ -21,5 +21,11 @@ namespace myapp
         {
 
         }
+
+        private void agregarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmInformacion ventanainfo=new FrmInformacion();
+            ventanainfo.Show();
+        }
     }
 }
