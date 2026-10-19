@@ -20,16 +20,31 @@ namespace myapp
 
         private void FrmInformacion_Load(object sender, EventArgs e)
         {
-            datos= new Datos();
-            DataSet ds = datos.Informacion("SELECT * FROM datos");
-            if (ds!=null)
+            ActualizarGrid();
+        }
+        private void ActualizarGrid()
+        {
+            datos = new Datos();
+
+            DataSet ds = datos.Informacion("Select * From datos");
+
+            if (ds != null)
             {
-                dtgInformacion.DataSource=ds.Tables[0];
+
+                dtgInformacion.AutoGenerateColumns = false;
+
+                dtgInformacion.Columns[0].DataPropertyName = "Id";
+                dtgInformacion.Columns[1].DataPropertyName = "Nombre";
+                dtgInformacion.Columns[2].DataPropertyName = "Paterno";
+                dtgInformacion.Columns[3].DataPropertyName = "Materno";
+                dtgInformacion.Columns[4].DataPropertyName = "Telefono";
+                dtgInformacion.Columns[5].DataPropertyName = "Correo";
+
+                dtgInformacion.DataSource = ds.Tables[0];
             }
             else
             {
-                MessageBox.Show("Error al cargar informacion", "sistema",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No se pudo obtener la informacion de la base de datos");
             }
         }
 
@@ -37,6 +52,21 @@ namespace myapp
         {
             frmRegistro ventana = new frmRegistro();
             ventana.Show();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void dtgInformacion_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void FrmInformacion_Activated(object sender, EventArgs e)
+        {
+           ActualizarGrid();
         }
     }
 }

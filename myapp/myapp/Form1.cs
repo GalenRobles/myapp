@@ -27,5 +27,10 @@ namespace myapp
             FrmInformacion ventanainfo=new FrmInformacion();
             ventanainfo.Show();
         }
+
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
