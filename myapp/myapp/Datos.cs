@@ -34,14 +34,32 @@ namespace myapp
                 Console.WriteLine(ex.ToString());
             }
         }
-        public bool Insertar(string nombre, string paterno,string materno,string telefono,string correo)
+        public bool Ejecutar(SqlCommand comando)
         {
             try
             {
                 conexionOpen();
-                string comando = "INSERT INTO Datos(Nombre, Paterno, Materno, Telefono, Correo) VALUES ('" + nombre + "', '" + paterno + "', '" + materno + "', '" + telefono + "', '" + correo + "')";
-                SqlCommand sqlCommand = new SqlCommand(comando, conexion);
+                comando.Connection = conexion;
+                comando.ExecuteNonQuery();
+                conexionClose();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.ToString());
+                return false;
+            }
+        }
+        public bool ejecutar(string command)
+        {
+            try
+            {
+                conexionOpen();
+
+                SqlCommand sqlCommand = new SqlCommand(command, conexion);
+
                 sqlCommand.ExecuteNonQuery();
+                conexionClose();
                 return true;
             }
             catch (Exception ex)

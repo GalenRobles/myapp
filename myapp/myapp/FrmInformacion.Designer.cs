@@ -36,6 +36,7 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btneliminar = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -58,6 +59,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.btneliminar);
             this.splitContainer1.Panel2.Controls.Add(this.button1);
             this.splitContainer1.Panel2.Controls.Add(this.btnSalir);
             this.splitContainer1.Size = new System.Drawing.Size(955, 450);
@@ -125,6 +127,16 @@
             this.Column6.Name = "Column6";
             this.Column6.Width = 200;
             // 
+            // btneliminar
+            // 
+            this.btneliminar.Location = new System.Drawing.Point(244, 57);
+            this.btneliminar.Name = "btneliminar";
+            this.btneliminar.Size = new System.Drawing.Size(97, 34);
+            this.btneliminar.TabIndex = 2;
+            this.btneliminar.Text = "Eliminar";
+            this.btneliminar.UseVisualStyleBackColor = true;
+            this.btneliminar.Click += new System.EventHandler(this.btneliminar_Click);
+            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(439, 57);
@@ -176,5 +188,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.Button btneliminar;
     }
 }

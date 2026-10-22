@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ namespace myapp
     public partial class FrmInformacion : Form
     {
         Datos datos;
+        public int id;
         public FrmInformacion()
         {
             InitializeComponent();
@@ -61,12 +63,54 @@ namespace myapp
 
         private void dtgInformacion_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            frmRegistro actualizar = new frmRegistro(dtgInformacion.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                dtgInformacion.Rows[e.RowIndex].Cells[2].Value.ToString(),
+                dtgInformacion.Rows[e.RowIndex].Cells[3].Value.ToString(),
+                dtgInformacion.Rows[e.RowIndex].Cells[4].Value.ToString(),
+                dtgInformacion.Rows[e.RowIndex].Cells[5].Value.ToString(),
+                Convert.ToInt32(dtgInformacion.Rows[e.RowIndex].Cells[0].Value));
+            actualizar.Show();
         }
 
         private void FrmInformacion_Activated(object sender, EventArgs e)
         {
            ActualizarGrid();
+        }
+
+        private void btneliminar_Click(object sender, EventArgs e)
+        {
+            if (dtgInformacion.CurrentRow != null)
+            {
+                DialogResult respuesta = MessageBox.Show("¿Estas seguro de que deseas eliminar este registro?",
+                                                         "Confirmar eliminacion",
+                                                         MessageBoxButtons.YesNo,
+                                                         MessageBoxIcon.Warning);
+
+                if (respuesta == DialogResult.Yes)
+                {
+                    int id = Convert.ToInt32(dtgInformacion.CurrentRow.Cells[0].Value);
+
+                    SqlCommand comando = new SqlCommand("DELETE FROM Datos WHERE Id = @Id");
+                    comando.Parameters.AddWithValue("@Id", id);
+
+                    Datos datos = new Datos();
+                    bool borrado = datos.Ejecutar(comando);
+
+                    if (borrado)
+                    {
+                        MessageBox.Show("Registro Eliminado");
+                        ActualizarGrid(); 
+                    }
+                    else
+                    {
+                        MessageBox.Show("Hubo un error al intentar eliminar el registro");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecciona un registro de la tabla primero.");
+            }
         }
     }
 }
