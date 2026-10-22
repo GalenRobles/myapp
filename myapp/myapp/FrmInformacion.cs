@@ -92,7 +92,7 @@ namespace myapp
             }
             else
             {
-                MessageBox.Show("Por favor, selecciona un registro de la tabla primero.");
+                MessageBox.Show("Por favor, selecciona un registro de la tabla primero");
             }
         }
 
@@ -128,7 +128,7 @@ namespace myapp
             }
             else
             {
-                MessageBox.Show("Por favor, selecciona un registro de la tabla primero.");
+                MessageBox.Show("Por favor, selecciona un registro de la tabla primero");
             }
         }
 
