@@ -15,7 +15,7 @@ namespace myapp
 {
     public partial class Form1 : Form
     {
-        List<Persona> registros = new List<Persona>();
+        List<Estado> registros = new List<Estado>();
         String ruta = "";
         public Form1()
         {
@@ -29,43 +29,49 @@ namespace myapp
 
         private void btnCargar_Click(object sender, EventArgs e)
         {
-            if (ofd.ShowDialog() == DialogResult.OK)
+            uta = ofd.FileName;
+            var reader = new StreamReader(ruta);
+            var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+
+            registros = csv.GetRecords<Estado>().ToList();
+
+            dtg.Rows.Clear(); // Limpiar el DataGridView antes de cargar nuevos
+
+            // Preparar el DataTable para enviarlo a la clase Datos
+            DataTable dtData = new DataTable();
+            dtData.Columns.Add("Id", typeof(int));
+            dtData.Columns.Add("Nombre", typeof(string));
+
+            foreach (var registro in registros)
             {
-                ruta= ofd.FileName;
-                var reader = new StreamReader(ofd.FileName);
-                var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-                registros = csv.GetRecords<Persona>().ToList();
-                foreach (var registro in registros)
-                {
-                    dtg.Rows.Add(registro.id, registro.name, registro.email);
-                }
-                reader.Close();
+                // Llenar el DataGridView visual (solo 2 columnas ahora)
+                dtg.Rows.Add(registro.Id, registro.Nombre);
+
+                // Llenar el DataTable en memoria
+                dtData.Rows.Add(registro.Id, registro.Nombre);
             }
+
+            // Mandar a llamar a tu clase Datos para insertar
+            Datos db = new Datos();
+            bool exito = db.InsertarMasivo(dtData, "Estados"); // Aquí indicas la tabla destino
+
+            if (exito)
+            {
+                MessageBox.Show("Archivo CSV cargado en pantalla y guardado en SQL Server.");
+            }
+            else
+            {
+                MessageBox.Show("Hubo un error al guardar en la base de datos.");
+            }
+
+            csv.Dispose();
+            reader.Close();
+        }
         }
 
         private void dtg_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            Form2 editar = new Form2(
-                dtg.Rows[e.RowIndex].Cells[1].Value.ToString(),
-                dtg.Rows[e.RowIndex].Cells[2].Value.ToString());
-            if (editar.ShowDialog() == DialogResult.OK)
-            {
-                string nombre = editar.ActualizaNombre;
-                string correo = editar.ActualizaCorreo;
-                dtg.Rows[e.RowIndex].Cells[1].Value = nombre;
-                dtg.Rows[e.RowIndex].Cells[2].Value= correo;
-
-                registros[e.RowIndex].name = nombre;
-                registros[e.RowIndex].email= correo;
-
-                var writer = new StreamWriter(ruta);
-
-                var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
-
-                csv.WriteRecords( registros );
-                csv.Dispose();
-                writer.Close();
-            }
+           
         }
     }
 }
