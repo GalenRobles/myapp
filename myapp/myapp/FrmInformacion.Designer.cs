@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dtgInformacion = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -36,7 +37,9 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btneliminar = new System.Windows.Forms.Button();
+            this.CMS = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -44,6 +47,7 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgInformacion)).BeginInit();
+            this.CMS.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -59,7 +63,6 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.btneliminar);
             this.splitContainer1.Panel2.Controls.Add(this.button1);
             this.splitContainer1.Panel2.Controls.Add(this.btnSalir);
             this.splitContainer1.Size = new System.Drawing.Size(955, 450);
@@ -76,14 +79,17 @@
             this.Column4,
             this.Column5,
             this.Column6});
+            this.dtgInformacion.ContextMenuStrip = this.CMS;
             this.dtgInformacion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgInformacion.Location = new System.Drawing.Point(0, 0);
             this.dtgInformacion.Name = "dtgInformacion";
             this.dtgInformacion.RowHeadersWidth = 62;
             this.dtgInformacion.RowTemplate.Height = 28;
+            this.dtgInformacion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgInformacion.Size = new System.Drawing.Size(955, 317);
             this.dtgInformacion.TabIndex = 0;
             this.dtgInformacion.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgInformacion_CellContentClick);
+            this.dtgInformacion.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dtgInformacion_CellMouseDown);
             // 
             // Column1
             // 
@@ -127,15 +133,28 @@
             this.Column6.Name = "Column6";
             this.Column6.Width = 200;
             // 
-            // btneliminar
+            // CMS
             // 
-            this.btneliminar.Location = new System.Drawing.Point(244, 57);
-            this.btneliminar.Name = "btneliminar";
-            this.btneliminar.Size = new System.Drawing.Size(97, 34);
-            this.btneliminar.TabIndex = 2;
-            this.btneliminar.Text = "Eliminar";
-            this.btneliminar.UseVisualStyleBackColor = true;
-            this.btneliminar.Click += new System.EventHandler(this.btneliminar_Click);
+            this.CMS.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.CMS.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem2});
+            this.CMS.Name = "CMS";
+            this.CMS.Size = new System.Drawing.Size(160, 68);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(159, 32);
+            this.toolStripMenuItem1.Text = "Modificar";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(159, 32);
+            this.toolStripMenuItem2.Text = "Eliminar";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // button1
             // 
@@ -172,6 +191,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgInformacion)).EndInit();
+            this.CMS.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -188,6 +208,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.Button btneliminar;
+        private System.Windows.Forms.ContextMenuStrip CMS;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

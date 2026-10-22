@@ -28,7 +28,7 @@ namespace myapp
         {
             datos = new Datos();
 
-            DataSet ds = datos.Informacion("Select * From datos");
+            DataSet ds = datos.Informacion("Select * From datos Order by id Asc");
 
             if (ds != null)
             {
@@ -63,13 +63,7 @@ namespace myapp
 
         private void dtgInformacion_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            frmRegistro actualizar = new frmRegistro(dtgInformacion.Rows[e.RowIndex].Cells[1].Value.ToString(),
-                dtgInformacion.Rows[e.RowIndex].Cells[2].Value.ToString(),
-                dtgInformacion.Rows[e.RowIndex].Cells[3].Value.ToString(),
-                dtgInformacion.Rows[e.RowIndex].Cells[4].Value.ToString(),
-                dtgInformacion.Rows[e.RowIndex].Cells[5].Value.ToString(),
-                Convert.ToInt32(dtgInformacion.Rows[e.RowIndex].Cells[0].Value));
-            actualizar.Show();
+           
         }
 
         private void FrmInformacion_Activated(object sender, EventArgs e)
@@ -79,8 +73,34 @@ namespace myapp
 
         private void btneliminar_Click(object sender, EventArgs e)
         {
+           
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
             if (dtgInformacion.CurrentRow != null)
             {
+                frmRegistro actualizar = new frmRegistro(
+                    dtgInformacion.CurrentRow.Cells[1].Value.ToString(),
+                    dtgInformacion.CurrentRow.Cells[2].Value.ToString(),
+                    dtgInformacion.CurrentRow.Cells[3].Value.ToString(),
+                    dtgInformacion.CurrentRow.Cells[4].Value.ToString(),
+                    dtgInformacion.CurrentRow.Cells[5].Value.ToString(),
+                    Convert.ToInt32(dtgInformacion.CurrentRow.Cells[0].Value)
+                );
+                actualizar.Show();
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecciona un registro de la tabla primero.");
+            }
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            if (dtgInformacion.CurrentRow != null)
+            {
+                int id = Convert.ToInt32(dtgInformacion.CurrentRow.Cells[0].Value);
                 DialogResult respuesta = MessageBox.Show("¿Estas seguro de que deseas eliminar este registro?",
                                                          "Confirmar eliminacion",
                                                          MessageBoxButtons.YesNo,
@@ -88,7 +108,6 @@ namespace myapp
 
                 if (respuesta == DialogResult.Yes)
                 {
-                    int id = Convert.ToInt32(dtgInformacion.CurrentRow.Cells[0].Value);
 
                     SqlCommand comando = new SqlCommand("DELETE FROM Datos WHERE Id = @Id");
                     comando.Parameters.AddWithValue("@Id", id);
@@ -99,7 +118,7 @@ namespace myapp
                     if (borrado)
                     {
                         MessageBox.Show("Registro Eliminado");
-                        ActualizarGrid(); 
+                        ActualizarGrid();
                     }
                     else
                     {
@@ -111,6 +130,11 @@ namespace myapp
             {
                 MessageBox.Show("Por favor, selecciona un registro de la tabla primero.");
             }
+        }
+
+        private void dtgInformacion_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
         }
     }
 }
