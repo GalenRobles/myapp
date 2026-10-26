@@ -29,49 +29,106 @@ namespace myapp
 
         private void btnCargar_Click(object sender, EventArgs e)
         {
-            uta = ofd.FileName;
-            var reader = new StreamReader(ruta);
-            var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-
-            registros = csv.GetRecords<Estado>().ToList();
-
-            dtg.Rows.Clear(); // Limpiar el DataGridView antes de cargar nuevos
-
-            // Preparar el DataTable para enviarlo a la clase Datos
-            DataTable dtData = new DataTable();
-            dtData.Columns.Add("Id", typeof(int));
-            dtData.Columns.Add("Nombre", typeof(string));
-
-            foreach (var registro in registros)
+            if (ofd.ShowDialog() == DialogResult.OK)
             {
-                // Llenar el DataGridView visual (solo 2 columnas ahora)
-                dtg.Rows.Add(registro.Id, registro.Nombre);
+                ruta = ofd.FileName;
+                var reader = new StreamReader(ruta);
+                var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
 
-                // Llenar el DataTable en memoria
-                dtData.Rows.Add(registro.Id, registro.Nombre);
+                registros = csv.GetRecords<Estado>().ToList();
+
+                dtg.Rows.Clear(); 
+
+                
+                DataTable dtData = new DataTable();
+                dtData.Columns.Add("Id", typeof(int));
+                dtData.Columns.Add("Nombre", typeof(string));
+
+                foreach (var registro in registros)
+                {
+                    
+                    dtg.Rows.Add(registro.Id, registro.Nombre);
+
+                    
+                    dtData.Rows.Add(registro.Id, registro.Nombre);
+                }
+
+                ConexionDB db = new ConexionDB();
+                bool exito = db.InsertarMasivo(dtData, "Estados");
+
+                if (exito)
+                {
+                    MessageBox.Show("Archivo CSV cargado en pantalla y guardado en SQL Server.");
+                }
+                else
+                {
+                    MessageBox.Show("Hubo un error al guardar en la base de datos.");
+                }
+
+                csv.Dispose();
+                reader.Close();
             }
-
-            // Mandar a llamar a tu clase Datos para insertar
-            Datos db = new Datos();
-            bool exito = db.InsertarMasivo(dtData, "Estados"); // Aquí indicas la tabla destino
-
-            if (exito)
-            {
-                MessageBox.Show("Archivo CSV cargado en pantalla y guardado en SQL Server.");
-            }
-            else
-            {
-                MessageBox.Show("Hubo un error al guardar en la base de datos.");
-            }
-
-            csv.Dispose();
-            reader.Close();
         }
-        }
+        
 
         private void dtg_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
            
+        }
+
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnCargarMunicipios_Click(object sender, EventArgs e)
+        {
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                string ruta = ofd.FileName;
+
+                var config = new CsvHelper.Configuration.CsvConfiguration(CultureInfo.InvariantCulture)
+                {
+                    HasHeaderRecord = false
+                };
+
+                var reader = new StreamReader(ruta);
+                var csv = new CsvReader(reader, config);
+
+                List<Municipio> registros = csv.GetRecords<Municipio>().ToList();
+
+                dtg.Rows.Clear();
+
+                DataTable dtData = new DataTable();
+                dtData.Columns.Add("Id", typeof(int));
+                dtData.Columns.Add("Nombre", typeof(string));
+                dtData.Columns.Add("IdEstado", typeof(int));
+
+                int idContador = 1;
+
+                foreach (var registro in registros)
+                {
+                    dtg.Rows.Add(idContador, registro.Nombre, registro.IdEstado);
+                    dtData.Rows.Add(idContador, registro.Nombre, registro.IdEstado);
+
+                    idContador++; 
+                }
+
+                ConexionDB db = new ConexionDB();
+                bool exito = db.InsertarMasivo(dtData, "Municipios");
+
+                if (exito)
+                {
+                    MessageBox.Show("Archivo CSV cargado y municipios guardados en SQL Server.");
+                }
+                else
+                {
+                    MessageBox.Show("Hubo un error al guardar en la base de datos.");
+                }
+
+                csv.Dispose();
+                reader.Close();
+            }
         }
     }
 }

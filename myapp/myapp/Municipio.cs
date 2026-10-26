@@ -9,10 +9,13 @@ namespace myapp
 {
     public class Municipio
     {
+        [Ignore]
         public int Id { get; set; }
+
+        [Index(1)]
         public string Nombre { get; set; }
 
-        [Name("IdEstado(fk)")]
+        [Index(0)]
         public int IdEstado { get; set; }
     }
 }
