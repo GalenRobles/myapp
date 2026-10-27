@@ -58,11 +58,11 @@ namespace myapp
 
                 if (exito)
                 {
-                    MessageBox.Show("Archivo CSV cargado en pantalla y guardado en SQL Server.");
+                    MessageBox.Show("Archivo CSV cargado en pantalla y guardado en SQL Server");
                 }
                 else
                 {
-                    MessageBox.Show("Hubo un error al guardar en la base de datos.");
+                    MessageBox.Show("Hubo un error al guardar en la base de datos");
                 }
 
                 csv.Dispose();
@@ -119,11 +119,11 @@ namespace myapp
 
                 if (exito)
                 {
-                    MessageBox.Show("Archivo CSV cargado y municipios guardados en SQL Server.");
+                    MessageBox.Show("Archivo CSV cargado y municipios guardados en SQL Server");
                 }
                 else
                 {
-                    MessageBox.Show("Hubo un error al guardar en la base de datos.");
+                    MessageBox.Show("Hubo un error al guardar en la base de datos");
                 }
 
                 csv.Dispose();
