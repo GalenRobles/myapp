@@ -226,9 +226,9 @@
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.TextBox txtcorreo;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox CmbEstado;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox CmbMunic;
+        public System.Windows.Forms.ComboBox CmbEstado;
+        public System.Windows.Forms.ComboBox CmbMunic;
     }
 }

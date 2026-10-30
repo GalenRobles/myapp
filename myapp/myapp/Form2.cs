@@ -26,10 +26,10 @@ namespace myapp
             datos = new Datos();
             if (updateMode == false)
             {
-                bool f = datos.ejecutar("Insert Into Datos(nombre,paterno,materno," +
-                "telefono,correo)Values('"
+                bool f = datos.ejecutar("Insert Into Datos(nombre,paterno,materno,telefono,correo,idEstado,idMunicipio) Values('"
                 + txtNom.Text + "','" + txtPate.Text + "','" + txtMate.Text
-                + "','" + maskTel.Text + "','" + txtcorreo.Text + "')");
+                + "','" + maskTel.Text + "','" + txtcorreo.Text + "',"
+                + CmbEstado.SelectedValue + "," + CmbMunic.SelectedValue + ")");
                 if (f)
                 {
                     MessageBox.Show("Registro agregado correctamente");
@@ -44,13 +44,15 @@ namespace myapp
             {
                 SqlCommand comando = new SqlCommand("Update Datos Set nombre=@nombre," +
                     "paterno=@paterno,materno=@materno,telefono=@telefono," +
-                    "correo=@correo Where id=@id");
+                    "correo=@correo,IdEstado=@IdEstado,IdMunicipio=@IdMunicipio Where id=@id");
                 comando.Parameters.AddWithValue("@nombre", txtNom.Text);
                 comando.Parameters.AddWithValue("@paterno", txtPate.Text);
                 comando.Parameters.AddWithValue("@materno", txtMate.Text);
                 comando.Parameters.AddWithValue("@telefono", maskTel.Text);
                 comando.Parameters.AddWithValue("@correo", txtcorreo.Text);
                 comando.Parameters.AddWithValue("@id", id);
+                comando.Parameters.AddWithValue("@IdEstado", CmbEstado.SelectedValue);
+                comando.Parameters.AddWithValue("@IdMunicipio", CmbMunic.SelectedValue);
                 bool f = datos.Ejecutar(comando);
                 if (f)
                 {
@@ -122,9 +124,10 @@ namespace myapp
             dsMuni = datos.Informacion("Select * from Municipios where IdEstado =" + idEstado);
             if (dsMuni != null && dsMuni.Tables.Count > 0)
             {
-                CmbMunic.DataSource = dsMuni.Tables[0];
+                
                 CmbMunic.DisplayMember = "Nombre";
                 CmbMunic.ValueMember = "Id";
+                CmbMunic.DataSource = dsMuni.Tables[0];
 
             }
         }

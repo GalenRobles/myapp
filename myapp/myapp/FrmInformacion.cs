@@ -41,6 +41,8 @@ namespace myapp
                 dtgInformacion.Columns[3].DataPropertyName = "Materno";
                 dtgInformacion.Columns[4].DataPropertyName = "Telefono";
                 dtgInformacion.Columns[5].DataPropertyName = "Correo";
+                dtgInformacion.Columns[6].DataPropertyName = "IdEstado";
+                dtgInformacion.Columns[7].DataPropertyName = "IdMunicipio";
 
                 dtgInformacion.DataSource = ds.Tables[0];
             }
@@ -87,8 +89,12 @@ namespace myapp
                     dtgInformacion.CurrentRow.Cells[4].Value.ToString(),
                     dtgInformacion.CurrentRow.Cells[5].Value.ToString(),
                     Convert.ToInt32(dtgInformacion.CurrentRow.Cells[0].Value)
+                  
                 );
                 actualizar.Show();
+
+                actualizar.CmbEstado.SelectedValue = dtgInformacion.CurrentRow.Cells[6].Value;
+                actualizar.CmbMunic.SelectedValue = dtgInformacion.CurrentRow.Cells[7].Value;
             }
             else
             {
