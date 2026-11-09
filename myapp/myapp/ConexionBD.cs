@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 using System.Data;
 namespace myapp
 {
-    internal class Datos
+    internal class ConexionBD
     {
         SqlConnection conexion;
         String cadenaConexion = "Server=localhost,1434;Database=Agenda;User Id=sa;Password=L12345678.;TrustServerCertificate=True;";

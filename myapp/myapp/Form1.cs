@@ -32,5 +32,17 @@ namespace myapp
         {
             this.Close();
         }
+
+        private void sociosRegistradosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FmrSocios ventanasocios=new FmrSocios();
+            ventanasocios.Show();
+        }
+
+        private void rentasInformacionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Rentas ventanarenta = new Rentas();
+            ventanarenta.Show();
+        }
     }
 }

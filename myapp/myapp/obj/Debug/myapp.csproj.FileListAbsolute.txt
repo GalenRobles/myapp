@@ -10,3 +10,6 @@ C:\App\MyApp1\myapp\myapp\obj\Debug\myapp.exe
 C:\App\MyApp1\myapp\myapp\obj\Debug\myapp.pdb
 C:\App\MyApp1\myapp\myapp\obj\Debug\myapp.frmRegistro.resources
 C:\App\MyApp1\myapp\myapp\obj\Debug\myapp.FrmInformacion.resources
+C:\App\MyApp1\myapp\myapp\obj\Debug\myapp.RegistroSocios.resources
+C:\App\MyApp1\myapp\myapp\obj\Debug\myapp.FmrSocios.resources
+C:\App\MyApp1\myapp\myapp\obj\Debug\myapp.Rentas.resources

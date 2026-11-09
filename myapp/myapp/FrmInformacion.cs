@@ -13,7 +13,7 @@ namespace myapp
 {
     public partial class FrmInformacion : Form
     {
-        Datos datos;
+        ConexionBD ConexionBD;
         public int id;
         public FrmInformacion()
         {
@@ -26,23 +26,20 @@ namespace myapp
         }
         private void ActualizarGrid()
         {
-            datos = new Datos();
+            ConexionBD = new ConexionBD();
 
-            DataSet ds = datos.Informacion("Select * From datos Order by id Asc");
+            DataSet ds = ConexionBD.Informacion("Select * From Peliculas Order by id_pelicula Asc");
 
             if (ds != null)
             {
 
                 dtgInformacion.AutoGenerateColumns = false;
 
-                dtgInformacion.Columns[0].DataPropertyName = "Id";
-                dtgInformacion.Columns[1].DataPropertyName = "Nombre";
-                dtgInformacion.Columns[2].DataPropertyName = "Paterno";
-                dtgInformacion.Columns[3].DataPropertyName = "Materno";
-                dtgInformacion.Columns[4].DataPropertyName = "Telefono";
-                dtgInformacion.Columns[5].DataPropertyName = "Correo";
-                dtgInformacion.Columns[6].DataPropertyName = "IdEstado";
-                dtgInformacion.Columns[7].DataPropertyName = "IdMunicipio";
+                dtgInformacion.Columns[0].DataPropertyName = "id_pelicula";
+                dtgInformacion.Columns[1].DataPropertyName = "titulo";
+                dtgInformacion.Columns[2].DataPropertyName = "genero";
+                dtgInformacion.Columns[3].DataPropertyName = "copias_disponibles";
+                
 
                 dtgInformacion.DataSource = ds.Tables[0];
             }
@@ -86,15 +83,13 @@ namespace myapp
                     dtgInformacion.CurrentRow.Cells[1].Value.ToString(),
                     dtgInformacion.CurrentRow.Cells[2].Value.ToString(),
                     dtgInformacion.CurrentRow.Cells[3].Value.ToString(),
-                    dtgInformacion.CurrentRow.Cells[4].Value.ToString(),
-                    dtgInformacion.CurrentRow.Cells[5].Value.ToString(),
+                   
                     Convert.ToInt32(dtgInformacion.CurrentRow.Cells[0].Value)
                   
                 );
                 actualizar.Show();
 
-                actualizar.CmbEstado.SelectedValue = dtgInformacion.CurrentRow.Cells[6].Value;
-                actualizar.CmbMunic.SelectedValue = dtgInformacion.CurrentRow.Cells[7].Value;
+                
             }
             else
             {
@@ -115,10 +110,10 @@ namespace myapp
                 if (respuesta == DialogResult.Yes)
                 {
 
-                    SqlCommand comando = new SqlCommand("DELETE FROM Datos WHERE Id = @Id");
-                    comando.Parameters.AddWithValue("@Id", id);
+                    SqlCommand comando = new SqlCommand("DELETE FROM Datos WHERE id_pelicula = @id_pelicula");
+                    comando.Parameters.AddWithValue("@id_pelicula", id);
 
-                    Datos datos = new Datos();
+                    ConexionBD datos = new ConexionBD();
                     bool borrado = datos.Ejecutar(comando);
 
                     if (borrado)
