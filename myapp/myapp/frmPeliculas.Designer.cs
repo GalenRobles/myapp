@@ -33,9 +33,10 @@
             this.btnPeliculaAgregar = new System.Windows.Forms.Button();
             this.btnPeliculaEliminar = new System.Windows.Forms.Button();
             this.dgvPeliculas = new System.Windows.Forms.DataGridView();
-            this.label2 = new System.Windows.Forms.Label();
             this.IdPelicula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnModificar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPeliculas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,7 +58,7 @@
             // 
             // btnPeliculaAgregar
             // 
-            this.btnPeliculaAgregar.Location = new System.Drawing.Point(346, 110);
+            this.btnPeliculaAgregar.Location = new System.Drawing.Point(336, 110);
             this.btnPeliculaAgregar.Name = "btnPeliculaAgregar";
             this.btnPeliculaAgregar.Size = new System.Drawing.Size(104, 29);
             this.btnPeliculaAgregar.TabIndex = 2;
@@ -67,7 +68,7 @@
             // 
             // btnPeliculaEliminar
             // 
-            this.btnPeliculaEliminar.Location = new System.Drawing.Point(496, 109);
+            this.btnPeliculaEliminar.Location = new System.Drawing.Point(581, 108);
             this.btnPeliculaEliminar.Name = "btnPeliculaEliminar";
             this.btnPeliculaEliminar.Size = new System.Drawing.Size(90, 30);
             this.btnPeliculaEliminar.TabIndex = 3;
@@ -90,16 +91,7 @@
             this.dgvPeliculas.RowTemplate.Height = 28;
             this.dgvPeliculas.Size = new System.Drawing.Size(549, 319);
             this.dgvPeliculas.TabIndex = 4;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(223, 36);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(217, 20);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "CATALOGO DE PELICULAS";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.dgvPeliculas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPeliculas_CellClick);
             // 
             // IdPelicula
             // 
@@ -120,11 +112,32 @@
             this.Nombre.ReadOnly = true;
             this.Nombre.Width = 150;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(223, 36);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(217, 20);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "CATALOGO DE PELICULAS";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // btnModificar
+            // 
+            this.btnModificar.Location = new System.Drawing.Point(468, 113);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(88, 28);
+            this.btnModificar.TabIndex = 11;
+            this.btnModificar.Text = "Modificar";
+            this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
+            // 
             // frmPeliculas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(697, 558);
+            this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dgvPeliculas);
             this.Controls.Add(this.btnPeliculaEliminar);
@@ -150,5 +163,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdPelicula;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.Button btnModificar;
     }
 }

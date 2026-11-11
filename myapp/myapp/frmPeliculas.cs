@@ -86,6 +86,49 @@ namespace myapp
             else
                 MessageBox.Show("No se pudo eliminar la película");
         }
+
+        private void dgvPeliculas_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvPeliculas.CurrentRow != null && dgvPeliculas.CurrentRow.Index >= 0)
+            {
+                txtPeliculaNombre.Text = dgvPeliculas.CurrentRow.Cells["Nombre"].Value?.ToString();
+            }
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            if (dgvPeliculas.CurrentRow == null)
+            {
+                MessageBox.Show("Selecciona una pelicula de la tabla para modificar");
+                return;
+            }
+
+            string nuevoNombre = txtPeliculaNombre.Text.Trim();
+            if (string.IsNullOrEmpty(nuevoNombre))
+            {
+                MessageBox.Show("Escribe el nuevo nombre de la pelicula");
+                txtPeliculaNombre.Focus();
+                return;
+            }
+
+            int id = Convert.ToInt32(dgvPeliculas.CurrentRow.Cells["IdPelicula"].Value);
+
+            SqlCommand cmd = new SqlCommand("UPDATE peliculas SET Nombre = @nombre WHERE IdPelicula = @id");
+            cmd.Parameters.AddWithValue("@nombre", nuevoNombre);
+            cmd.Parameters.AddWithValue("@id", id);
+
+            if (datos.Ejecutar(cmd))
+            {
+                MessageBox.Show("Pelicula modificada correctamente");
+                txtPeliculaNombre.Clear();
+                txtPeliculaNombre.Focus();
+                CargarPeliculas();
+            }
+            else
+            {
+                MessageBox.Show("No se pudo modificar el socio.");
+            }
+        }
     }
     
 }

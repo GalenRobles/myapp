@@ -89,5 +89,47 @@ namespace myapp
                 MessageBox.Show("No se pudo eliminar el socio");
         }
 
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            if (dgvSocios.CurrentRow == null)
+            {
+                MessageBox.Show("Selecciona un socio de la tabla para modificar");
+                return;
+            }
+
+            string nuevoNombre = txtSocioNombre.Text.Trim();
+            if (string.IsNullOrEmpty(nuevoNombre))
+            {
+                MessageBox.Show("Escribe el nuevo nombre del socio");
+                txtSocioNombre.Focus();
+                return;
+            }
+
+            int id = Convert.ToInt32(dgvSocios.CurrentRow.Cells["IdSocio"].Value);
+
+            SqlCommand cmd = new SqlCommand("UPDATE Socios SET Nombre = @nombre WHERE IdSocio = @id");
+            cmd.Parameters.AddWithValue("@nombre", nuevoNombre);
+            cmd.Parameters.AddWithValue("@id", id);
+
+            if (datos.Ejecutar(cmd))
+            {
+                MessageBox.Show("Socio modificado correctamente");
+                txtSocioNombre.Clear();
+                txtSocioNombre.Focus();
+                CargarSocios(); 
+            }
+            else
+            {
+                MessageBox.Show("No se pudo modificar el socio.");
+            }
+        }
+
+        private void dgvSocios_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvSocios.CurrentRow != null && dgvSocios.CurrentRow.Index >= 0)
+            {
+                txtSocioNombre.Text = dgvSocios.CurrentRow.Cells["Nombre"].Value?.ToString();
+            }
+        }
     }
 }

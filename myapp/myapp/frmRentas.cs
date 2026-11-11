@@ -14,7 +14,6 @@ namespace myapp
     public partial class frmRentas : Form
     {
         ConexionBD datos = new ConexionBD();
-        const int MAX_RENTAS = 3;
         public frmRentas()
         {
             InitializeComponent();
@@ -44,22 +43,23 @@ namespace myapp
         private void CargarPeliculasDisponibles()
         {
             DataSet ds = datos.Informacion(
-                "SELECT IdPelicula, Nombre FROM Peliculas " +
-                "WHERE IdPelicula NOT IN (SELECT IdPelicula FROM Rentas WHERE FechaEntregada IS NULL) " +
-                "ORDER BY Nombre");
+        "SELECT IdPelicula, Nombre FROM Peliculas " +
+        "WHERE IdPelicula NOT IN (SELECT IdPelicula FROM Rentas WHERE FechaEntregada IS NULL) " +
+        "ORDER BY Nombre");
+
             if (ds == null) return;
-            cboPelicula.DisplayMember = "Nombre";
-            cboPelicula.ValueMember = "IdPelicula";
-            cboPelicula.DataSource = ds.Tables[0];
+
+            ChlistPelis.DataSource = ds.Tables[0];
+            ChlistPelis.DisplayMember = "Nombre";
+            ChlistPelis.ValueMember = "IdPelicula";
         }
 
-        // Llena el grid con lo que el socio tiene prestado y actualiza contador/botón
         private void CargarRentasSocio()
         {
             if (cboSocio.SelectedValue == null || cboSocio.SelectedValue is DataRowView)
             {
                 dgvRentasActivas.DataSource = null;
-                lblContador.Text = "Prestadas: 0/" + MAX_RENTAS;
+                lblContador.Text = "Películas activas: 0";
                 btnRentar.Enabled = false;
                 return;
             }
@@ -70,14 +70,14 @@ namespace myapp
                 "FROM Rentas r INNER JOIN Peliculas p ON p.IdPelicula = r.IdPelicula " +
                 "WHERE r.IdSocio = " + idSocio + " AND r.FechaEntregada IS NULL " +
                 "ORDER BY r.FechaDevolucion");
+
             if (ds == null) return;
 
             DataTable dt = ds.Tables[0];
             dgvRentasActivas.DataSource = dt;
-           
 
-            lblContador.Text = "Prestadas: " + dt.Rows.Count + "/" + MAX_RENTAS;
-            btnRentar.Enabled = dt.Rows.Count < MAX_RENTAS;
+            lblContador.Text = "Películas activas: " + dt.Rows.Count;
+            btnRentar.Enabled = (dt.Rows.Count == 0);
         }
 
         private void cboSocio_SelectedIndexChanged(object sender, EventArgs e)
@@ -88,33 +88,53 @@ namespace myapp
 
         private void btnRentar_Click(object sender, EventArgs e)
         {
-            if (cboSocio.SelectedValue == null || cboPelicula.SelectedValue == null)
+            if (cboSocio.SelectedValue == null || cboSocio.SelectedValue is DataRowView)
             {
-                MessageBox.Show("Selecciona un socio y una pelicula");
+                MessageBox.Show("Selecciona un socio");
+                return;
+            }
+            if (dgvRentasActivas.Rows.Count > 0)
+            {
+                MessageBox.Show("El socio ya cuenta con una renta activa debe devolver sus peliculas antes de iniciar otra renta");
+                return;
+            }
+            if (ChlistPelis.CheckedItems.Count == 0)
+            {
+                MessageBox.Show("Selecciona al menos una película para rentar");
                 return;
             }
 
-            if (dgvRentasActivas.Rows.Count >= MAX_RENTAS)
+            int idSocio = Convert.ToInt32(cboSocio.SelectedValue);
+            DateTime fechaDev = dtpDevolucion.Value.Date;
+            int exitosas = 0;
+
+            foreach (DataRowView item in ChlistPelis.CheckedItems)
             {
-                MessageBox.Show("Este socio ya tiene " + MAX_RENTAS + " peliculas.Debe devolver alguna");
-                return;
+                int idPelicula = Convert.ToInt32(item["IdPelicula"]);
+
+                SqlCommand cmd = new SqlCommand(
+                    "INSERT INTO Rentas(IdSocio, IdPelicula, FechaRenta, FechaDevolucion) " +
+                    "VALUES(@socio, @pelicula, GETDATE(), @devolucion)");
+
+                cmd.Parameters.AddWithValue("@socio", idSocio);
+                cmd.Parameters.AddWithValue("@pelicula", idPelicula);
+                cmd.Parameters.AddWithValue("@devolucion", fechaDev);
+
+                if (datos.Ejecutar(cmd))
+                {
+                    exitosas++;
+                }
             }
 
-            SqlCommand cmd = new SqlCommand(
-                "INSERT INTO Rentas(IdSocio, IdPelicula, FechaDevolucion) " +
-                "VALUES(@socio, @pelicula, @devolucion)");
-            cmd.Parameters.AddWithValue("@socio", Convert.ToInt32(cboSocio.SelectedValue));
-            cmd.Parameters.AddWithValue("@pelicula", Convert.ToInt32(cboPelicula.SelectedValue));
-            cmd.Parameters.AddWithValue("@devolucion", dtpDevolucion.Value.Date);
-
-            if (datos.Ejecutar(cmd))
+            if (exitosas > 0)
             {
+                MessageBox.Show($"Renta registrada con éxito ({exitosas} película(s)).");
                 CargarRentasSocio();
                 CargarPeliculasDisponibles();
             }
             else
             {
-                MessageBox.Show("No se pudo registrar la renta");
+                MessageBox.Show("No se pudo registrar la renta.");
             }
         }
 
@@ -140,6 +160,11 @@ namespace myapp
             {
                 MessageBox.Show("No se pudo registrar la devolucion");
             }
+        }
+
+        private void ChlistPelis_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
     

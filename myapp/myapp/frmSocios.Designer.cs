@@ -33,15 +33,16 @@
             this.txtSocioNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvSocios = new System.Windows.Forms.DataGridView();
-            this.label2 = new System.Windows.Forms.Label();
             this.IdSocio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnModificar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSocios)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSocioEliminar
             // 
-            this.btnSocioEliminar.Location = new System.Drawing.Point(550, 105);
+            this.btnSocioEliminar.Location = new System.Drawing.Point(646, 104);
             this.btnSocioEliminar.Name = "btnSocioEliminar";
             this.btnSocioEliminar.Size = new System.Drawing.Size(90, 30);
             this.btnSocioEliminar.TabIndex = 7;
@@ -90,16 +91,7 @@
             this.dgvSocios.RowTemplate.Height = 28;
             this.dgvSocios.Size = new System.Drawing.Size(549, 336);
             this.dgvSocios.TabIndex = 8;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(286, 31);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(190, 20);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "CATALOGO DE SOCIOS";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.dgvSocios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSocios_CellClick);
             // 
             // IdSocio
             // 
@@ -120,11 +112,32 @@
             this.Nombre.ReadOnly = true;
             this.Nombre.Width = 150;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(286, 31);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(190, 20);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "CATALOGO DE SOCIOS";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // btnModificar
+            // 
+            this.btnModificar.Location = new System.Drawing.Point(529, 104);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(91, 32);
+            this.btnModificar.TabIndex = 12;
+            this.btnModificar.Text = "Modificar";
+            this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
+            // 
             // frmSocios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 550);
+            this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dgvSocios);
             this.Controls.Add(this.btnSocioEliminar);
@@ -150,5 +163,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdSocio;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.Button btnModificar;
     }
 }

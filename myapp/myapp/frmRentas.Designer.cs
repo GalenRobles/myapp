@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.cboSocio = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.cboPelicula = new System.Windows.Forms.ComboBox();
             this.lblContador = new System.Windows.Forms.Label();
             this.dtpDevolucion = new System.Windows.Forms.DateTimePicker();
             this.lblDevolucion = new System.Windows.Forms.Label();
             this.dgvRentasActivas = new System.Windows.Forms.DataGridView();
-            this.btnDevolver = new System.Windows.Forms.Button();
-            this.btnRentar = new System.Windows.Forms.Button();
             this.IdRenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Pelicula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaRenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaDevolucion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnDevolver = new System.Windows.Forms.Button();
+            this.btnRentar = new System.Windows.Forms.Button();
+            this.ChlistPelis = new System.Windows.Forms.CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRentasActivas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,15 +73,6 @@
             this.label2.Size = new System.Drawing.Size(63, 20);
             this.label2.TabIndex = 2;
             this.label2.Text = "Pelicula";
-            // 
-            // cboPelicula
-            // 
-            this.cboPelicula.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboPelicula.FormattingEnabled = true;
-            this.cboPelicula.Location = new System.Drawing.Point(127, 147);
-            this.cboPelicula.Name = "cboPelicula";
-            this.cboPelicula.Size = new System.Drawing.Size(260, 28);
-            this.cboPelicula.TabIndex = 3;
             // 
             // lblContador
             // 
@@ -118,16 +109,16 @@
             this.Pelicula,
             this.FechaRenta,
             this.FechaDevolucion});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvRentasActivas.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvRentasActivas.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvRentasActivas.Location = new System.Drawing.Point(38, 322);
             this.dgvRentasActivas.Name = "dgvRentasActivas";
             this.dgvRentasActivas.ReadOnly = true;
@@ -135,26 +126,6 @@
             this.dgvRentasActivas.RowTemplate.Height = 28;
             this.dgvRentasActivas.Size = new System.Drawing.Size(545, 290);
             this.dgvRentasActivas.TabIndex = 7;
-            // 
-            // btnDevolver
-            // 
-            this.btnDevolver.Location = new System.Drawing.Point(253, 629);
-            this.btnDevolver.Name = "btnDevolver";
-            this.btnDevolver.Size = new System.Drawing.Size(134, 35);
-            this.btnDevolver.TabIndex = 8;
-            this.btnDevolver.Text = "Devolver";
-            this.btnDevolver.UseVisualStyleBackColor = true;
-            this.btnDevolver.Click += new System.EventHandler(this.btnDevolver_Click);
-            // 
-            // btnRentar
-            // 
-            this.btnRentar.Location = new System.Drawing.Point(253, 269);
-            this.btnRentar.Name = "btnRentar";
-            this.btnRentar.Size = new System.Drawing.Size(115, 31);
-            this.btnRentar.TabIndex = 9;
-            this.btnRentar.Text = "Rentar";
-            this.btnRentar.UseVisualStyleBackColor = true;
-            this.btnRentar.Click += new System.EventHandler(this.btnRentar_Click);
             // 
             // IdRenta
             // 
@@ -193,18 +164,47 @@
             this.FechaDevolucion.ReadOnly = true;
             this.FechaDevolucion.Width = 150;
             // 
+            // btnDevolver
+            // 
+            this.btnDevolver.Location = new System.Drawing.Point(253, 629);
+            this.btnDevolver.Name = "btnDevolver";
+            this.btnDevolver.Size = new System.Drawing.Size(134, 35);
+            this.btnDevolver.TabIndex = 8;
+            this.btnDevolver.Text = "Devolver";
+            this.btnDevolver.UseVisualStyleBackColor = true;
+            this.btnDevolver.Click += new System.EventHandler(this.btnDevolver_Click);
+            // 
+            // btnRentar
+            // 
+            this.btnRentar.Location = new System.Drawing.Point(253, 269);
+            this.btnRentar.Name = "btnRentar";
+            this.btnRentar.Size = new System.Drawing.Size(115, 31);
+            this.btnRentar.TabIndex = 9;
+            this.btnRentar.Text = "Rentar";
+            this.btnRentar.UseVisualStyleBackColor = true;
+            this.btnRentar.Click += new System.EventHandler(this.btnRentar_Click);
+            // 
+            // ChlistPelis
+            // 
+            this.ChlistPelis.FormattingEnabled = true;
+            this.ChlistPelis.Location = new System.Drawing.Point(127, 133);
+            this.ChlistPelis.Name = "ChlistPelis";
+            this.ChlistPelis.Size = new System.Drawing.Size(313, 50);
+            this.ChlistPelis.TabIndex = 10;
+            this.ChlistPelis.SelectedIndexChanged += new System.EventHandler(this.ChlistPelis_SelectedIndexChanged);
+            // 
             // frmRentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(650, 686);
+            this.Controls.Add(this.ChlistPelis);
             this.Controls.Add(this.btnRentar);
             this.Controls.Add(this.btnDevolver);
             this.Controls.Add(this.dgvRentasActivas);
             this.Controls.Add(this.lblDevolucion);
             this.Controls.Add(this.dtpDevolucion);
             this.Controls.Add(this.lblContador);
-            this.Controls.Add(this.cboPelicula);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cboSocio);
             this.Controls.Add(this.label1);
@@ -222,7 +222,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cboSocio;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cboPelicula;
         private System.Windows.Forms.Label lblContador;
         private System.Windows.Forms.DateTimePicker dtpDevolucion;
         private System.Windows.Forms.Label lblDevolucion;
@@ -233,5 +232,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Pelicula;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaRenta;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaDevolucion;
+        private System.Windows.Forms.CheckedListBox ChlistPelis;
     }
 }
