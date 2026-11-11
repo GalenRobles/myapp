@@ -46,63 +46,45 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RegistroSocios.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="RegistroSocios.Designer.cs">
-      <DependentUpon>RegistroSocios.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Rentas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Rentas.Designer.cs">
-      <DependentUpon>Rentas.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="RegistroSocios.resx">
-      <DependentUpon>RegistroSocios.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Rentas.resx">
-      <DependentUpon>Rentas.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="docker-compose.yml" />
     <Compile Include="ConexionBD.cs" />
-    <Compile Include="FmrSocios.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FmrSocios.Designer.cs">
-      <DependentUpon>FmrSocios.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="RegistroPeliculas.cs">
+    <Compile Include="frmPeliculas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RegistroPeliculas.Designer.cs">
-      <DependentUpon>RegistroPeliculas.cs</DependentUpon>
+    <Compile Include="frmPeliculas.Designer.cs">
+      <DependentUpon>frmPeliculas.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmInformacion.cs">
+    <Compile Include="frmRentas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmInformacion.Designer.cs">
-      <DependentUpon>FrmInformacion.cs</DependentUpon>
+    <Compile Include="frmRentas.Designer.cs">
+      <DependentUpon>frmRentas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSocios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSocios.Designer.cs">
+      <DependentUpon>frmSocios.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FmrSocios.resx">
-      <DependentUpon>FmrSocios.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RegistroPeliculas.resx">
-      <DependentUpon>RegistroPeliculas.cs</DependentUpon>
+    <EmbeddedResource Include="frmPeliculas.resx">
+      <DependentUpon>frmPeliculas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmInformacion.resx">
-      <DependentUpon>FrmInformacion.cs</DependentUpon>
+    <EmbeddedResource Include="frmRentas.resx">
+      <DependentUpon>frmRentas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSocios.resx">
+      <DependentUpon>frmSocios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace myapp
 {
-    public partial class Form1 : Form
+    public partial class frmVideoclub : Form
     {
-        public Form1()
+        public frmVideoclub()
         {
             InitializeComponent();
         }
@@ -24,8 +24,8 @@ namespace myapp
 
         private void agregarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmInformacion ventanainfo=new FrmInformacion();
-            ventanainfo.Show();
+            new frmPeliculas().ShowDialog();
+
         }
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
@@ -35,14 +35,12 @@ namespace myapp
 
         private void sociosRegistradosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FmrSocios ventanasocios=new FmrSocios();
-            ventanasocios.Show();
+            new frmSocios().ShowDialog();
         }
 
         private void rentasInformacionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Rentas ventanarenta = new Rentas();
-            ventanarenta.Show();
+            new frmRentas().ShowDialog();
         }
     }
 }
